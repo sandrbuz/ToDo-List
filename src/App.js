@@ -5,7 +5,7 @@ import TaskItem from './TaskList/TaskList';
 function App() {
   const [tasks, setTasks] = useState([
     { text: "1 case", isActive: true },
-    { text: "2 case", isActive: true },
+    { text: "2 case", isActive: false },
     { text: "3 case", isActive: true },
     { text: "4 case", isActive: true },
   ]);
@@ -13,12 +13,13 @@ function App() {
   const [filter, setFilter] = useState('all');
 
 
-  const handleAddTask = () => {
-    if (newTask) {
+  const handleAddTask = (e) => {
+    if (newTask && e.key === 'Enter') {
       setTasks([...tasks, { text: newTask, isActive: true }]);
-      setNewTask('');
+      setNewTask(''); // Clear the input field
     }
   };
+
 
 
   const toggleTask = index => {
@@ -60,12 +61,12 @@ function App() {
       <div className='app'>
         <h1>ToDo List</h1>
         <input
-          type="text"
-          value={newTask}
-          onChange={e => setNewTask(e.target.value)}
-          placeholder="Add a new task"
-        />
-        <button onClick={handleAddTask}>Add Task</button>
+        type="text"
+        value={newTask}
+        onChange={e => setNewTask(e.target.value)}
+        onKeyDown={handleAddTask} 
+        placeholder="Add a new task"
+      />
         <ul>
           {getFilteredTasks().map((task, index) => (
             <TaskItem
@@ -80,7 +81,7 @@ function App() {
           <button style={getButtonStyle('all')} onClick={() => setFilter('all')}>All</button>
           <button style={getButtonStyle('active')} onClick={() => setFilter('active')}>Active</button>
           <button style={getButtonStyle('completed')} onClick={() => setFilter('completed')}>Completed</button>
-          <button onClick={deleteCompletedTasks}>Delete Completed</button>
+          <button onClick={deleteCompletedTasks}>Clear completed</button>
         </div>
       </div>
     </div>

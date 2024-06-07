@@ -1,6 +1,7 @@
 import React, { useState, KeyboardEvent } from 'react';
 import TaskItem from './TaskItem/TaskItem';
 import './App.css';
+import TaskControls from './TaskControls/TaskControls';
 
 
 interface Task {
@@ -10,9 +11,9 @@ interface Task {
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([
-    { text: "1 case", isActive: true },
-    { text: "2 case", isActive: false },
-    { text: "3 case", isActive: true },
+    { text: "Тестовое задание", isActive: true },
+    { text: "Прекрасный код", isActive: false },
+    { text: "Покрытие тестами", isActive: true },
   ]);
   const [newTask, setNewTask] = useState<string>('');
   const [filter, setFilter] = useState<string>('all');
@@ -73,6 +74,7 @@ const App: React.FC = () => {
           onKeyDown={handleAddTask}
           placeholder="Add a new task"
           maxLength={20}
+          className="addTask"
         // style={inputStyle}
         />
         <ul>
@@ -80,13 +82,12 @@ const App: React.FC = () => {
             <TaskItem key={index} task={task} onToggle={() => toggleTask(index)} />
           ))}
         </ul>
-        <div>
-          <p>{activeTaskCount} items left</p>
-          <button style={getButtonStyle('all')} onClick={() => setFilter('all')}>All</button>
-          <button style={getButtonStyle('active')} onClick={() => setFilter('active')}>Active</button>
-          <button style={getButtonStyle('completed')} onClick={() => setFilter('completed')}>Completed</button>
-          <button onClick={deleteCompletedTasks}>Delete Completed</button>
-        </div>
+        <TaskControls
+          activeTaskCount={activeTaskCount}
+          currentFilter={filter}
+          setFilter={setFilter}
+          deleteCompletedTasks={deleteCompletedTasks}
+        />
 
       </div>
     </div>

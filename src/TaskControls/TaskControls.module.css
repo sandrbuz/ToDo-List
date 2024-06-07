@@ -1,0 +1,15 @@
+.taskControls{
+    display: flex;
+    justify-content: space-between;
+    color: gray;
+    padding: 10px;
+}
+.taskCount{
+    padding: 5px;
+}
+.taskControls button{
+    border: none;
+    background: none;
+    color: gray;
+    padding: 5px;
+}

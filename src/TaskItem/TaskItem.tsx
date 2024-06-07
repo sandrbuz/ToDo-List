@@ -16,13 +16,19 @@ interface TaskItemProps {
 // Apply the interface to the function component
 const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle }) => {
   return (
-    <li className={styles.some} style={{ textDecoration: task.isActive ? 'none' : 'line-through' }}>
-      <input
-        type="checkbox"
-        checked={!task.isActive}
-        onChange={onToggle}
-      />
-      {task.text}
+    <li className={styles.taskItem} style={{
+      textDecoration: task.isActive ? 'none' : 'line-through',
+      color: task.isActive ? 'inherit' : 'rgb(201, 199, 199)'
+    }}>
+      <label className={styles.checkboxWrapper}>
+        <input
+          type="checkbox"
+          checked={!task.isActive}
+          onChange={onToggle}
+        />
+        <span className={styles.checkboxCustom}></span>
+      </label>
+      <p>{task.text}</p>
     </li>
   );
 }

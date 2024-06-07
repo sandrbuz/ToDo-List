@@ -6,16 +6,30 @@
     height: 100vh;
     background-color: #F5F5F5;
 }
-.app{
-    max-width: 600px;
-    width: 100%;
-    border: 1px solid black; 
-}
-ul{
-    list-style-type: none;
-}
 h1{
     color: #E7DAD9;
     font-size: 70px;
     font-weight: 100;
+    margin-bottom: 10px;
+}
+.app{
+    max-width: 600px;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+.addTask{
+    max-width: 600px;
+    width: 100%;
+    padding: 10px 10px 5px 20px;
+    height: 50px;
+    outline: none;
+    border: none;
+    box-shadow: inset 0 -4px 6px -6px rgba(0, 0, 0, 0.2);
+}
+.addTask::placeholder {
+    color: #E6E6E6;
+    font-size: 25px;
+  }
+ul{
+    list-style-type: none;
 }

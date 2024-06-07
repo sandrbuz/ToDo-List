@@ -1,5 +1,5 @@
 import React, { useState, KeyboardEvent } from 'react';
-import TaskItem from './TaskList/TaskList';
+import TaskItem from './TaskItem/TaskItem';
 import './App.css';
 
 
@@ -13,7 +13,6 @@ const App: React.FC = () => {
     { text: "1 case", isActive: true },
     { text: "2 case", isActive: false },
     { text: "3 case", isActive: true },
-    { text: "4 case", isActive: true },
   ]);
   const [newTask, setNewTask] = useState<string>('');
   const [filter, setFilter] = useState<string>('all');
@@ -59,29 +58,35 @@ const App: React.FC = () => {
     };
   };
 
+  const inputStyle = {
+    outline: newTask.length === 20 ? '2px solid red' : 'none'
+  };
+
   return (
     <div className='main'>
-      <div className='app'>
       <h1>TODOS</h1>
-      <input
-        type="text"
-        value={newTask}
-        onChange={e => setNewTask(e.target.value)}
-        onKeyDown={handleAddTask}
-        placeholder="Add a new task"
-      />
-      <ul>
-        {getFilteredTasks().map((task, index) => (
-          <TaskItem key={index} task={task} onToggle={() => toggleTask(index)} />
-        ))}
-      </ul>
-      <div>
-        <p>{activeTaskCount} items left</p>
-        <button style={getButtonStyle('all')} onClick={() => setFilter('all')}>All</button>
-        <button style={getButtonStyle('active')} onClick={() => setFilter('active')}>Active</button>
-        <button style={getButtonStyle('completed')} onClick={() => setFilter('completed')}>Completed</button>
-        <button onClick={deleteCompletedTasks}>Delete Completed</button>
-      </div>
+      <div className='app'>
+        <input
+          type="text"
+          value={newTask}
+          onChange={e => setNewTask(e.target.value)}
+          onKeyDown={handleAddTask}
+          placeholder="Add a new task"
+          maxLength={20}
+        // style={inputStyle}
+        />
+        <ul>
+          {getFilteredTasks().map((task, index) => (
+            <TaskItem key={index} task={task} onToggle={() => toggleTask(index)} />
+          ))}
+        </ul>
+        <div>
+          <p>{activeTaskCount} items left</p>
+          <button style={getButtonStyle('all')} onClick={() => setFilter('all')}>All</button>
+          <button style={getButtonStyle('active')} onClick={() => setFilter('active')}>Active</button>
+          <button style={getButtonStyle('completed')} onClick={() => setFilter('completed')}>Completed</button>
+          <button onClick={deleteCompletedTasks}>Delete Completed</button>
+        </div>
 
       </div>
     </div>

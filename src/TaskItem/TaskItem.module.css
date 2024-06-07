@@ -37,7 +37,7 @@
   
   /* When the checkbox is checked */
   input[type="checkbox"]:checked + .checkboxCustom {
-    border-color: green;
+    border-color: #ccc;
   }
   
   input[type="checkbox"]:checked + .checkboxCustom::after {
@@ -47,7 +47,7 @@
     top: 3px;
     width: 5px;
     height: 10px;
-    border: solid green;
+    border: solid #8DBDAD;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }

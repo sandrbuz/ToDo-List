@@ -1,15 +1,24 @@
-.taskControls{
+.taskControls {
     display: flex;
     justify-content: space-between;
     color: gray;
     padding: 10px;
 }
-.taskCount{
+
+.taskCount {
     padding: 5px;
 }
-.taskControls button{
+
+.taskControls button {
     border: none;
     background: none;
     color: gray;
     padding: 5px;
+    border-radius: 5px;
+}
+
+@media (max-width: 380px) {
+    .taskControls {
+        flex-direction: column;
+    }
 }

@@ -53,20 +53,11 @@ const App: React.FC = () => {
   // Calculate the number of active tasks
   const activeTaskCount = tasks.filter(task => task.isActive).length;
 
-  const getButtonStyle = (buttonFilter: string) => {
-    return {
-      border: filter === buttonFilter ? '2px solid black' : '1px solid grey'
-    };
-  };
-
-  const inputStyle = {
-    outline: newTask.length === 20 ? '2px solid red' : 'none'
-  };
-
   return (
     <div className='main'>
       <h1>TODOS</h1>
       <div className='app'>
+        {newTask.length >= 20 && <span className="validation">max 20</span>}
         <input
           type="text"
           value={newTask}
@@ -75,7 +66,6 @@ const App: React.FC = () => {
           placeholder="Add a new task"
           maxLength={20}
           className="addTask"
-        // style={inputStyle}
         />
         <ul>
           {getFilteredTasks().map((task, index) => (
@@ -88,7 +78,6 @@ const App: React.FC = () => {
           setFilter={setFilter}
           deleteCompletedTasks={deleteCompletedTasks}
         />
-
       </div>
     </div>
   );
